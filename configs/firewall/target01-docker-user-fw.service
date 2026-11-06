@@ -1,0 +1,12 @@
+[Unit]
+Description=Restrict Docker published ports to the lab client
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'iptables -F DOCKER-USER; iptables -A DOCKER-USER -i ens33 -s 192.168.70.1 -p tcp -m conntrack --ctorigdstport 8080 -j RETURN; iptables -A DOCKER-USER -i ens33 -j DROP; iptables -A DOCKER-USER -j RETURN'
+
+[Install]
+WantedBy=multi-user.target
