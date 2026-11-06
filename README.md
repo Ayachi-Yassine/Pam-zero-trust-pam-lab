@@ -110,3 +110,4 @@ See [docs/limitations-and-roadmap.md](docs/limitations-and-roadmap.md).
 No secrets are committed: `.env`, certificates and keys are git-ignored, and the compose file reads the database password from an untracked `.env`. This is a **lab**; addresses are private and credentials are test-only.
 
 Teleport Community Edition is used under its licence (free for individuals and companies under 100 employees and under $10M revenue); this repository contains only our own configuration and documentation.
+"# Pam-zero-trust-pam-lab" 
