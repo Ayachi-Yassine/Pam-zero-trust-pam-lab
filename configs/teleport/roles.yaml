@@ -1,0 +1,37 @@
+# Teleport roles used in the lab (apply with: sudo tctl create -f roles.yaml)
+# pam-admin uses Teleport's built-in "editor" and "auditor" roles (no SSH access).
+kind: role
+version: v7
+metadata:
+  name: infra-admin
+spec:
+  options:
+    max_session_ttl: 8h
+  allow:
+    logins: [sysadmin]
+    node_labels:
+      env: lab
+---
+kind: role
+version: v7
+metadata:
+  name: app-operator
+spec:
+  options:
+    max_session_ttl: 2h
+  allow:
+    logins: [appop]
+    node_labels:
+      env: lab
+---
+kind: role
+version: v7
+metadata:
+  name: limited-user
+spec:
+  options:
+    max_session_ttl: 2h
+  allow:
+    logins: []        # can authenticate, cannot open a session anywhere
+    node_labels:
+      env: lab
